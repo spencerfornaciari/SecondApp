@@ -14,13 +14,15 @@
 		89F1ED5418162B6C00BC7556 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED5318162B6C00BC7556 /* main.m */; };
 		89F1ED5818162B6C00BC7556 /* SFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED5718162B6C00BC7556 /* SFAppDelegate.m */; };
 		89F1ED5B18162B6C00BC7556 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F1ED5918162B6C00BC7556 /* Main.storyboard */; };
-		89F1ED5E18162B6C00BC7556 /* SFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED5D18162B6C00BC7556 /* SFViewController.m */; };
 		89F1ED6018162B6C00BC7556 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F1ED5F18162B6C00BC7556 /* Images.xcassets */; };
 		89F1ED6718162B6C00BC7556 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F1ED6618162B6C00BC7556 /* XCTest.framework */; };
 		89F1ED6818162B6C00BC7556 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F1ED4718162B6C00BC7556 /* Foundation.framework */; };
 		89F1ED6918162B6C00BC7556 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F1ED4B18162B6C00BC7556 /* UIKit.framework */; };
 		89F1ED7118162B6C00BC7556 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89F1ED6F18162B6C00BC7556 /* InfoPlist.strings */; };
 		89F1ED7318162B6C00BC7556 /* PostAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED7218162B6C00BC7556 /* PostAppTests.m */; };
+		89F1ED7E18162B9F00BC7556 /* SFPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED7D18162B9F00BC7556 /* SFPostController.m */; };
+		89F1ED8118162BBF00BC7556 /* SFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED8018162BBF00BC7556 /* SFPost.m */; };
+		89F1ED8718162CBA00BC7556 /* SFPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ED8618162CBA00BC7556 /* SFPostTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +47,18 @@
 		89F1ED5618162B6C00BC7556 /* SFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFAppDelegate.h; sourceTree = "<group>"; };
 		89F1ED5718162B6C00BC7556 /* SFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFAppDelegate.m; sourceTree = "<group>"; };
 		89F1ED5A18162B6C00BC7556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		89F1ED5C18162B6C00BC7556 /* SFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFViewController.h; sourceTree = "<group>"; };
-		89F1ED5D18162B6C00BC7556 /* SFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFViewController.m; sourceTree = "<group>"; };
 		89F1ED5F18162B6C00BC7556 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		89F1ED6518162B6C00BC7556 /* PostAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F1ED6618162B6C00BC7556 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		89F1ED6E18162B6C00BC7556 /* PostAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PostAppTests-Info.plist"; sourceTree = "<group>"; };
 		89F1ED7018162B6C00BC7556 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89F1ED7218162B6C00BC7556 /* PostAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostAppTests.m; sourceTree = "<group>"; };
+		89F1ED7C18162B9F00BC7556 /* SFPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFPostController.h; path = ../SFPostController.h; sourceTree = "<group>"; };
+		89F1ED7D18162B9F00BC7556 /* SFPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFPostController.m; path = ../SFPostController.m; sourceTree = "<group>"; };
+		89F1ED7F18162BBF00BC7556 /* SFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFPost.h; path = ../SFPost.h; sourceTree = "<group>"; };
+		89F1ED8018162BBF00BC7556 /* SFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFPost.m; path = ../SFPost.m; sourceTree = "<group>"; };
+		89F1ED8518162CBA00BC7556 /* SFPostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFPostTableViewCell.h; path = ../SFPostTableViewCell.h; sourceTree = "<group>"; };
+		89F1ED8618162CBA00BC7556 /* SFPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFPostTableViewCell.m; path = ../SFPostTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +118,15 @@
 		89F1ED4D18162B6C00BC7556 /* PostApp */ = {
 			isa = PBXGroup;
 			children = (
+				89F1ED8518162CBA00BC7556 /* SFPostTableViewCell.h */,
+				89F1ED8618162CBA00BC7556 /* SFPostTableViewCell.m */,
+				89F1ED7F18162BBF00BC7556 /* SFPost.h */,
+				89F1ED8018162BBF00BC7556 /* SFPost.m */,
+				89F1ED7C18162B9F00BC7556 /* SFPostController.h */,
+				89F1ED7D18162B9F00BC7556 /* SFPostController.m */,
 				89F1ED5618162B6C00BC7556 /* SFAppDelegate.h */,
 				89F1ED5718162B6C00BC7556 /* SFAppDelegate.m */,
 				89F1ED5918162B6C00BC7556 /* Main.storyboard */,
-				89F1ED5C18162B6C00BC7556 /* SFViewController.h */,
-				89F1ED5D18162B6C00BC7556 /* SFViewController.m */,
 				89F1ED5F18162B6C00BC7556 /* Images.xcassets */,
 				89F1ED4E18162B6C00BC7556 /* Supporting Files */,
 			);
@@ -251,7 +261,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				89F1ED5418162B6C00BC7556 /* main.m in Sources */,
-				89F1ED5E18162B6C00BC7556 /* SFViewController.m in Sources */,
+				89F1ED7E18162B9F00BC7556 /* SFPostController.m in Sources */,
+				89F1ED8718162CBA00BC7556 /* SFPostTableViewCell.m in Sources */,
+				89F1ED8118162BBF00BC7556 /* SFPost.m in Sources */,
 				89F1ED5818162B6C00BC7556 /* SFAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
