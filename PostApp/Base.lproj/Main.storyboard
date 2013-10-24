@@ -21,7 +21,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Li-ed-ZL9">
-                                            <rect key="frame" x="20" y="6" width="87" height="21"/>
+                                            <rect key="frame" x="20" y="6" width="140" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -34,9 +34,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LES-3g-fTx">
-                                            <rect key="frame" x="115" y="6" width="185" height="21"/>
+                                            <rect key="frame" x="162" y="6" width="138" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jop-pf-HJe">
@@ -57,9 +57,9 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Post Model App" id="wTY-uE-LcD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="u7Y-Lc-qS6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="t1Z-wM-zKc">
                             <connections>
-                                <segue destination="Rz6-CV-YOo" kind="push" id="gUJ-Tt-sLD"/>
+                                <segue destination="Rz6-CV-YOo" kind="modal" identifier="AddNewPost" id="7iP-jY-k91"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -68,10 +68,10 @@
             </objects>
             <point key="canvasLocation" x="643" y="40"/>
         </scene>
-        <!--View Controller - Post Model App-->
+        <!--Add Item View Controller - Post Model App-->
         <scene sceneID="x2i-mM-Vur">
             <objects>
-                <viewController id="Rz6-CV-YOo" sceneMemberID="viewController">
+                <viewController id="Rz6-CV-YOo" customClass="SFAddItemViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tTf-ZJ-BUH"/>
                         <viewControllerLayoutGuide type="bottom" id="3L3-iZ-hzQ"/>
@@ -81,7 +81,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="guo-yB-khX">
-                                <rect key="frame" x="13" y="127" width="287" height="30"/>
+                                <rect key="frame" x="20" y="125" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -105,12 +105,31 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFX-ht-SLa">
+                                <rect key="frame" x="32" y="83" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveContent:" destination="Rz6-CV-YOo" eventType="touchUpInside" id="vgY-X3-SBy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="AHZ-No-U4J"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Post Model App" id="EaH-xu-Ztc">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="XTJ-L1-ldn"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="submitContent" destination="jqi-Dc-vZ4" id="awn-3h-c7s"/>
+                        <outlet property="submitTitle" destination="Sy8-UN-4RY" id="fNi-eU-nYC"/>
+                        <outlet property="submitUsername" destination="guo-yB-khX" id="YqE-UQ-C1i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuk-rn-tAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

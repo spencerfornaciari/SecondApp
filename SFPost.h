@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface SFPost : NSObject
 
@@ -15,5 +16,9 @@
 @property (nonatomic) NSString *content;
 
 @property (nonatomic) NSDate *timeStamp;
+
+@property (nonatomic) NSArray *parseArray;
+
+-(void)withParse;
 
 @end

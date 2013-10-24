@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "SFPost.h"
 #import "SFPostTableViewCell.h"
+#import "SFAddItemViewController.h"
 #import <Parse/Parse.h>
 
-@interface SFPostController : UITableViewController
+@interface SFPostController : UITableViewController <SFAddItemViewControllerDelegate>
 
 @property (nonatomic) NSMutableArray *posts;
+@property (nonatomic) NSArray *parsePosts;
+
+//@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+//@property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+
+//- (void)addItem:sender;
 
 @end

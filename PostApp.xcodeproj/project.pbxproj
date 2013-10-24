@@ -17,6 +17,7 @@
 		894557EF18189E6400BE6413 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894557EE18189E6400BE6413 /* Security.framework */; };
 		894557F118189E6B00BE6413 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894557F018189E6B00BE6413 /* StoreKit.framework */; };
 		894557F318189E7800BE6413 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894557F218189E7800BE6413 /* SystemConfiguration.framework */; };
+		894557F61818A57800BE6413 /* SFAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894557F51818A57800BE6413 /* SFAddItemViewController.m */; };
 		89F1ED4818162B6C00BC7556 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F1ED4718162B6C00BC7556 /* Foundation.framework */; };
 		89F1ED4A18162B6C00BC7556 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F1ED4918162B6C00BC7556 /* CoreGraphics.framework */; };
 		89F1ED4C18162B6C00BC7556 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F1ED4B18162B6C00BC7556 /* UIKit.framework */; };
@@ -56,6 +57,8 @@
 		894557EE18189E6400BE6413 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		894557F018189E6B00BE6413 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		894557F218189E7800BE6413 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		894557F41818A57800BE6413 /* SFAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFAddItemViewController.h; sourceTree = "<group>"; };
+		894557F51818A57800BE6413 /* SFAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFAddItemViewController.m; sourceTree = "<group>"; };
 		89F1ED4418162B6C00BC7556 /* PostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F1ED4718162B6C00BC7556 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		89F1ED4918162B6C00BC7556 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,8 @@
 				89F1ED8018162BBF00BC7556 /* SFPost.m */,
 				89F1ED7C18162B9F00BC7556 /* SFPostController.h */,
 				89F1ED7D18162B9F00BC7556 /* SFPostController.m */,
+				894557F41818A57800BE6413 /* SFAddItemViewController.h */,
+				894557F51818A57800BE6413 /* SFAddItemViewController.m */,
 				89F1ED5618162B6C00BC7556 /* SFAppDelegate.h */,
 				89F1ED5718162B6C00BC7556 /* SFAppDelegate.m */,
 				89F1ED5918162B6C00BC7556 /* Main.storyboard */,
@@ -302,6 +307,7 @@
 			files = (
 				89F1ED5418162B6C00BC7556 /* main.m in Sources */,
 				89F1ED7E18162B9F00BC7556 /* SFPostController.m in Sources */,
+				894557F61818A57800BE6413 /* SFAddItemViewController.m in Sources */,
 				89F1ED8718162CBA00BC7556 /* SFPostTableViewCell.m in Sources */,
 				89F1ED8118162BBF00BC7556 /* SFPost.m in Sources */,
 				89F1ED5818162B6C00BC7556 /* SFAppDelegate.m in Sources */,

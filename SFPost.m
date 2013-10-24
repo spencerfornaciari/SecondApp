@@ -10,4 +10,25 @@
 
 @implementation SFPost
 
+-(void)withParse
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            self.parseArray = objects;
+            NSLog(@"Successfully retrieved %d posts.", objects.count);
+            NSLog(@"Successfully retrieved %@", self.parseArray[1][@"content"]);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 @end
