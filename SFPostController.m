@@ -31,16 +31,25 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     //self.navigationItem.leftBarButtonItem = addButton;
-    
-    
-    //PFObject *newPost = [PFObject objectWithClassName:@"PostObject"];
-    //newPost[@"userName"] = @"Wilbur Wright";
-    //newPost[@"title"] = @"Planes";
-    //newPost[@"content"] = @"We like to get high";
-    //[newPost saveInBackground];
-   
-    
 
+    PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
+    [query whereKeyExists:@"userName"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            self.parsePosts = objects;
+            self.posts = [(NSArray *)self.parsePosts mutableCopy];
+            [self.tableView reloadData];
+        }
+        else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    self.posts = [(NSArray *)self.parsePosts mutableCopy];
+    //NSLog(@"%@", self.posts);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -51,21 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"%@", self.posts);
     
-    PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
-    [query whereKeyExists:@"userName"];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            self.parsePosts = objects;
-            [self.tableView reloadData];
-            }
-        else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
 }
 
 
@@ -97,9 +93,7 @@
     
     // Configure the cell...
     
-    
-    
-    PFObject *parsePost = [self.parsePosts objectAtIndex:indexPath.row];
+    PFObject *parsePost = [self.posts objectAtIndex:indexPath.row];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"h:mm a 'on' MM/dd/yyyy"];
@@ -109,21 +103,11 @@
     cell.titleLabel.text = [parsePost objectForKey:@"title"];
     cell.postLabel.text = [parsePost objectForKey:@"content"];
     cell.timeLabel.text = postDate;
-    NSLog(@"%@", parsePost.createdAt);
     
-    
-    //cell.authorLabel.text = self.parsePosts[indexPath.row][@"userName"];
-    //cell.titleLabel.text = self.parsePosts[indexPath.row][@"title"];
-    //cell.titleLabel.text = self.parsePosts[indexPath.row][@"content"];
-   // cell.titleLabel.text = [self.posts[indexPath.row] title];
-    //cell.postLabel.text = [self.posts[indexPath.row] content];
-    //cell.timeLabel.text = postDate;
-    
-    
-   //cell.authorLabel.text = [self.posts[indexPath.row] userName];
-   //cell.authorLabel.text = [self.posts[indexPath.row] userName];
-   //cell.postLabel.text = [self.posts[indexPath.row] content];
-   //cell.timeLabel.text = postDate;
+    /*cell.authorLabel.text = [parsePost objectForKey:@"userName"];
+    cell.titleLabel.text = [parsePost objectForKey:@"title"];
+    cell.postLabel.text = [parsePost objectForKey:@"content"];
+    cell.timeLabel.text = postDate;*/
     
     return cell;
 }
@@ -172,23 +156,28 @@
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 */
-/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    UINavigationController *navController =
-    SFAddItemViewController *dvc = (SFAddItemViewController *)[navController
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ( [[segue identifier] isEqualToString:@"AddPost"] ){
+        UINavigationController *navController = (UINavigationController *)[segue destinationViewController];
+        NSLog(@"%@",[segue destinationViewController]);
+        
+        SFAddItemViewController *dvc = (SFAddItemViewController *)[navController topViewController];
+        dvc.submitUsername = nil;
+        dvc.submitTitle = nil;
+        dvc.submitContent = nil;
+    }
 }
 
- */
+
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:YES];
     if (editing) {
-        //addButton.enabled = NO;
+       
     } else {
         //addButton.enabled = YES;
+        NSLog(@"You are done editing");
     }
 }
 
@@ -213,13 +202,40 @@
         //SimpleEditableListAppDelegate *controller = (SimpleEditableListAppDelegate *)[[UIApplication sharedApplication] delegate];
         //[controller removeObjectFromListAtIndex:indexPath.row];
         //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        PFObject *deletePost = [self.parsePosts objectAtIndex:indexPath.row];;
+        PFObject *deletePost = [self.posts objectAtIndex:indexPath.row];;
+        [self.posts removeObjectAtIndex:indexPath.row];
         //[tableView deleteRowsAtIndexPaths:self.parsePosts withRowAnimation:UITableViewRowAnimationLeft];
         [deletePost deleteInBackground];
         [self.tableView reloadData];
     }
 }
 
+-(void)addPostToList:(SFPost *)addSFPost
+{
+   /*
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"h:mm a 'on' MM/dd/yyyy"];
+    NSString *postDate = [dateFormatter stringFromDate:addSFPost.timeStamp];
+    
+    PFObject *newSFPost = [PFObject objectWithClassName:@"PostObject"];
+    newSFPost[@"userName"] = addSFPost.userName;
+    newSFPost[@"title"] = addSFPost.title;
+    newSFPost[@"content"] = addSFPost.content;
+    //newSFPost.createdAt = postDate;
+    
+    [self.posts addObject:newSFPost];
+    
+    */
+    /*PFObject *newPost = [PFObject objectWithClassName:@"PostObject"];
+        newPost[@"userName"] = addPostArray[0];
+        newPost[@"title"] = addPostArray[1];
+        newPost[@"content"] = addPostArray[2];*/
+    
+        NSLog(@"first view: %@", addSFPost);
+        //[newPost saveInBackground];
+        //[newPost refresh];
+      // [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 @end

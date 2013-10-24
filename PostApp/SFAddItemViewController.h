@@ -12,23 +12,24 @@
 
 @protocol SFAddItemViewControllerDelegate;
 
+
+
 @interface SFAddItemViewController : UIViewController
 
-@property (weak, nonatomic) SFPost <SFAddItemViewControllerDelegate> *delegate;
+@property (nonatomic, weak) id <SFAddItemViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) IBOutlet UITextField *submitUsername;
-@property (strong, nonatomic) IBOutlet UITextField *submitTitle;
-@property (strong, nonatomic) IBOutlet UITextField *submitContent;
+@property (weak, nonatomic) IBOutlet UITextField *submitUsername;
+@property (weak, nonatomic) IBOutlet UITextField *submitTitle;
+@property (weak, nonatomic) IBOutlet UITextField *submitContent;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
-//@property (weak, nonatomic) id <DetailViewControllerDelegate> *delegate;
 
 - (IBAction)saveContent:(id)sender;
 
-//-(void)addContent;
+
 
 @end
 
-
 @protocol SFAddItemViewControllerDelegate <NSObject>
--(void)addPostToList;
+-(void)addPostToList:(SFPost *)addSFPost;
 @end

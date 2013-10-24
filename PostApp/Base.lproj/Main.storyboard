@@ -59,7 +59,7 @@
                     <navigationItem key="navigationItem" title="Post Model App" id="wTY-uE-LcD">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="t1Z-wM-zKc">
                             <connections>
-                                <segue destination="Rz6-CV-YOo" kind="modal" identifier="AddNewPost" id="7iP-jY-k91"/>
+                                <segue destination="Zvz-0O-Yq6" kind="modal" identifier="AddPost" id="g4n-Of-ZvS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -81,51 +81,45 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="guo-yB-khX">
-                                <rect key="frame" x="20" y="125" width="287" height="30"/>
+                                <rect key="frame" x="17" y="83" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sy8-UN-4RY">
-                                <rect key="frame" x="13" y="170" width="287" height="30"/>
+                                <rect key="frame" x="17" y="127" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Content" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jqi-Dc-vZ4">
-                                <rect key="frame" x="13" y="213" width="287" height="30"/>
+                                <rect key="frame" x="17" y="176" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTJ-Hc-bCP">
-                                <rect key="frame" x="105" y="87" width="111" height="21"/>
+                                <rect key="frame" x="105" y="48" width="111" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFX-ht-SLa">
-                                <rect key="frame" x="32" y="83" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveContent:" destination="Rz6-CV-YOo" eventType="touchUpInside" id="vgY-X3-SBy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="AHZ-No-U4J"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Post Model App" id="EaH-xu-Ztc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="XTJ-L1-ldn"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="KeR-Oi-bxg"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="W3d-1A-Ria">
+                            <connections>
+                                <action selector="saveContent:" destination="Rz6-CV-YOo" id="Ti3-Nq-2yg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="saveButton" destination="W3d-1A-Ria" id="gIm-8D-lBR"/>
                         <outlet property="submitContent" destination="jqi-Dc-vZ4" id="awn-3h-c7s"/>
                         <outlet property="submitTitle" destination="Sy8-UN-4RY" id="fNi-eU-nYC"/>
                         <outlet property="submitUsername" destination="guo-yB-khX" id="YqE-UQ-C1i"/>
@@ -133,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuk-rn-tAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="40"/>
+            <point key="canvasLocation" x="1588" y="40"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vfG-5L-dH9">
@@ -152,6 +146,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-d8-FdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117" y="40"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HZg-q3-u8R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zvz-0O-Yq6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CoA-W1-rPG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Rz6-CV-YOo" kind="relationship" relationship="rootViewController" id="NnP-Tu-cPX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0LH-Wp-ioq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1118" y="548"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
