@@ -49,7 +49,7 @@
     }];
     
     self.posts = [(NSArray *)self.parsePosts mutableCopy];
-    //NSLog(@"%@", self.posts);
+    [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -60,8 +60,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"%@", self.posts);
-    
 }
 
 
@@ -104,36 +102,33 @@
     cell.postLabel.text = [parsePost objectForKey:@"content"];
     cell.timeLabel.text = postDate;
     
-    /*cell.authorLabel.text = [parsePost objectForKey:@"userName"];
-    cell.titleLabel.text = [parsePost objectForKey:@"title"];
-    cell.postLabel.text = [parsePost objectForKey:@"content"];
-    cell.timeLabel.text = postDate;*/
-    
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
-}
-*/
+}*/
 
-/*
+
+
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        PFObject *deletePost = [self.posts objectAtIndex:indexPath.row];;
+        [self.posts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
-}
-*/
+}*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -158,17 +153,19 @@
 */
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [[segue identifier] isEqualToString:@"AddPost"] ){
+        
         UINavigationController *navController = (UINavigationController *)[segue destinationViewController];
         NSLog(@"%@",[segue destinationViewController]);
         
         SFAddItemViewController *dvc = (SFAddItemViewController *)[navController topViewController];
+        dvc.delegate = self;
         dvc.submitUsername = nil;
         dvc.submitTitle = nil;
         dvc.submitContent = nil;
     }
 }
 
-
+#pragma mark - Editing The Post View
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
@@ -210,30 +207,27 @@
     }
 }
 
+#pragma mark - SFAddItemViewController Delegate
+
 -(void)addPostToList:(SFPost *)addSFPost
 {
-   /*
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"h:mm a 'on' MM/dd/yyyy"];
-    NSString *postDate = [dateFormatter stringFromDate:addSFPost.timeStamp];
     
     PFObject *newSFPost = [PFObject objectWithClassName:@"PostObject"];
     newSFPost[@"userName"] = addSFPost.userName;
     newSFPost[@"title"] = addSFPost.title;
     newSFPost[@"content"] = addSFPost.content;
     //newSFPost.createdAt = postDate;
+     [newSFPost saveInBackground];
+    
     
     [self.posts addObject:newSFPost];
     
-    */
-    /*PFObject *newPost = [PFObject objectWithClassName:@"PostObject"];
-        newPost[@"userName"] = addPostArray[0];
-        newPost[@"title"] = addPostArray[1];
-        newPost[@"content"] = addPostArray[2];*/
+    NSLog(@"%@", self.posts);
+    [self.tableView reloadData];
     
-        NSLog(@"first view: %@", addSFPost);
+    NSLog(@"%@", self.posts);
+   // NSLog(@"first view: %@", addSFPost.userName);
         //[newPost saveInBackground];
-        //[newPost refresh];
       // [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

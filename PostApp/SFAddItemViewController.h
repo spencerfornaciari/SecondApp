@@ -12,8 +12,6 @@
 
 @protocol SFAddItemViewControllerDelegate;
 
-
-
 @interface SFAddItemViewController : UIViewController
 
 @property (nonatomic, weak) id <SFAddItemViewControllerDelegate> delegate;
@@ -22,11 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *submitTitle;
 @property (weak, nonatomic) IBOutlet UITextField *submitContent;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 - (IBAction)saveContent:(id)sender;
-
-
+- (IBAction)backToList:(id)sender;
 
 @end
 

@@ -44,11 +44,11 @@
 
 - (IBAction)saveContent:(id)sender {
     
-    PFObject *addPost = [PFObject objectWithClassName:@"PostObject"];
+    /*PFObject *addPost = [PFObject objectWithClassName:@"PostObject"];
     addPost[@"userName"] = self.submitUsername.text;
     addPost[@"title"] = self.submitTitle.text;
     addPost[@"content"] = self.submitContent.text;
-    [addPost saveInBackground];
+    [addPost saveInBackground];*/
     
     SFPost *newPost = [[SFPost alloc] init];
     newPost.userName = self.submitUsername.text;
@@ -56,25 +56,18 @@
     newPost.content = self.submitContent.text;
     newPost.timeStamp = [NSDate date];
     
-    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //[dateFormatter setDateFormat:@"h:mm a 'on' MM/dd/yyyy"];
-    //NSString *postDate = [dateFormatter stringFromDate:newPost.timeStamp];
-    
-    //PFObject *newSFPost = [PFObject objectWithClassName:@"PostObject"];
-    //newSFPost[@"userName"] = addSFPost.userName;
-    //newSFPost[@"title"] = addSFPost.title;
-    //newSFPost[@"content"] = addSFPost.content;
-    //newSFPost.createdAt = postDate;
-    
-    //[self.posts addObject:addPost];
-    
     NSLog(@"2nd view: %@", newPost);
-    //NSLog(@"2nd view count: %d", self.postArray.count);
     
     [self.delegate addPostToList:newPost];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     
 }
+
+- (IBAction)backToList:(id)sender
+{
+   [self dismissViewControllerAnimated:YES completion:nil]; 
+}
+
 
 @end

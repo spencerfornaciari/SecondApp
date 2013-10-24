@@ -110,7 +110,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Post Model App" id="EaH-xu-Ztc">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="KeR-Oi-bxg"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="RL5-m9-wrM">
+                            <connections>
+                                <action selector="backToList:" destination="Rz6-CV-YOo" id="Vxx-ll-FgS"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="W3d-1A-Ria">
                             <connections>
                                 <action selector="saveContent:" destination="Rz6-CV-YOo" id="Ti3-Nq-2yg"/>
@@ -119,6 +123,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="RL5-m9-wrM" id="yDe-ca-XzX"/>
                         <outlet property="saveButton" destination="W3d-1A-Ria" id="gIm-8D-lBR"/>
                         <outlet property="submitContent" destination="jqi-Dc-vZ4" id="awn-3h-c7s"/>
                         <outlet property="submitTitle" destination="Sy8-UN-4RY" id="fNi-eU-nYC"/>
