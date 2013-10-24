@@ -27,6 +27,10 @@
 {
     [super viewDidLoad];
     
+    /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    [testObject setObject:@"bar" forKey:@"foo"];
+    [testObject save];*/
+    
     SFPost *post1 = [[SFPost alloc] init];
     post1.userName = @"Full Name 1";
     post1.title = @"Default Title 1";

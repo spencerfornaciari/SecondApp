@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SFPost.h"
 #import "SFPostTableViewCell.h"
+#import <Parse/Parse.h>
 
 @interface SFPostController : UITableViewController
 
