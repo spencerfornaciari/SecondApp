@@ -29,8 +29,6 @@
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-    //self.navigationItem.leftBarButtonItem = addButton;
 
     PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
     [query whereKeyExists:@"userName"];
@@ -40,6 +38,11 @@
             // The find succeeded.
             self.parsePosts = objects;
             self.posts = [(NSArray *)self.parsePosts mutableCopy];
+            self.time = [[NSMutableArray alloc] init];
+
+            for( PFObject *timeObject in objects ){
+                [self.time addObject:timeObject.createdAt];
+            }
             [self.tableView reloadData];
         }
         else {
@@ -49,7 +52,6 @@
     }];
     
     self.posts = [(NSArray *)self.parsePosts mutableCopy];
-    [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -95,7 +97,8 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"h:mm a 'on' MM/dd/yyyy"];
-    NSString *postDate = [dateFormatter stringFromDate:parsePost.createdAt];
+    
+    NSString *postDate = [dateFormatter stringFromDate:self.time[indexPath.row]];
     
     cell.authorLabel.text = [parsePost objectForKey:@"userName"];
     cell.titleLabel.text = [parsePost objectForKey:@"title"];
@@ -146,11 +149,9 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-*/
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [[segue identifier] isEqualToString:@"AddPost"] ){
         
@@ -165,43 +166,28 @@
     }
 }
 
-#pragma mark - Editing The Post View
+#pragma mark - Editing/Deleting The Post View
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+/*- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:YES];
     if (editing) {
-       
+       //addButton.enabled = NO;
     } else {
-        //addButton.enabled = YES;
-        NSLog(@"You are done editing");
-    }
-}
-
-/*- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //SimpleEditableListAppDelegate *controller = (SimpleEditableListAppDelegate *)[[UIApplication sharedApplication] delegate];
-    //if (indexPath.row == [self.parsePosts count]-1) {
-        //return UITableViewCellEditingStyleInsert;
-    //} else {
-      //  return UITableViewCellEditingStyleDelete;
-    //}
-    if (indexPath.row == self.parsePosts.count-1) {
-        return UITableViewCellEditingStyleInsert;}
-    else {
-        return UITableViewCellEditingStyleDelete;
+                //NSLog(@"You are done editing");
     }
 }*/
 
+#pragma mark - Deleting Rows
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     // If row is deleted, remove it from the list.
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //SimpleEditableListAppDelegate *controller = (SimpleEditableListAppDelegate *)[[UIApplication sharedApplication] delegate];
-        //[controller removeObjectFromListAtIndex:indexPath.row];
-        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         PFObject *deletePost = [self.posts objectAtIndex:indexPath.row];;
         [self.posts removeObjectAtIndex:indexPath.row];
-        //[tableView deleteRowsAtIndexPaths:self.parsePosts withRowAnimation:UITableViewRowAnimationLeft];
+        [self.time removeObjectAtIndex:indexPath.row];
+        
         [deletePost deleteInBackground];
         [self.tableView reloadData];
     }
@@ -216,19 +202,14 @@
     newSFPost[@"userName"] = addSFPost.userName;
     newSFPost[@"title"] = addSFPost.title;
     newSFPost[@"content"] = addSFPost.content;
-    //newSFPost.createdAt = postDate;
-     [newSFPost saveInBackground];
+    [self.time insertObject:addSFPost.timeStamp atIndex:0];
+    [newSFPost saveInBackground];
     
     
-    [self.posts addObject:newSFPost];
+    [self.posts insertObject:newSFPost atIndex:0];
     
-    NSLog(@"%@", self.posts);
     [self.tableView reloadData];
     
-    NSLog(@"%@", self.posts);
-   // NSLog(@"first view: %@", addSFPost.userName);
-        //[newPost saveInBackground];
-      // [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

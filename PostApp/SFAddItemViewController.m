@@ -27,10 +27,6 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
-    
 }
 
 
@@ -42,13 +38,8 @@
 
 
 
-- (IBAction)saveContent:(id)sender {
-    
-    /*PFObject *addPost = [PFObject objectWithClassName:@"PostObject"];
-    addPost[@"userName"] = self.submitUsername.text;
-    addPost[@"title"] = self.submitTitle.text;
-    addPost[@"content"] = self.submitContent.text;
-    [addPost saveInBackground];*/
+- (IBAction)saveContent:(id)sender
+{
     
     SFPost *newPost = [[SFPost alloc] init];
     newPost.userName = self.submitUsername.text;
@@ -56,12 +47,9 @@
     newPost.content = self.submitContent.text;
     newPost.timeStamp = [NSDate date];
     
-    NSLog(@"2nd view: %@", newPost);
     
     [self.delegate addPostToList:newPost];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
 }
 
 - (IBAction)backToList:(id)sender

@@ -15,6 +15,7 @@
 @interface SFPostController : UITableViewController <SFAddItemViewControllerDelegate>
 
 @property (nonatomic) NSMutableArray *posts;
+@property (nonatomic) NSMutableArray *time;
 @property (nonatomic) NSArray *parsePosts;
 
 //@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
