@@ -83,7 +83,7 @@
 {
     // Return the number of rows in the section.
     
-    return self.parsePosts.count;
+    return self.posts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
